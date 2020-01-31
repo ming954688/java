@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <!--maxIdleSwap : 一分钟不使用, 就序列化
+        directory: 序列化后 文件存放的目录位置
+    -->
+    <Manager className="org.apache.catalina.session.PersistentManager" maxIdleSwap="1">
+        <Store className="org.apache.catalina.session.FileStore" directory="mytest"/>
+    </Manager>
+</Context>
