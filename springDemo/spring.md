@@ -54,7 +54,8 @@ javaee 开发的一站式框架
 > spring给bean中的属性设置值的方式有2种
 1. 构造方法方式
 2. set方法方式  
-详细见spring的配置文件
+[配置文件](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext1.xml)
+
 
 #### p名称空间的属性注入(spring2.5之后的版本可以使用)
 写法:  
@@ -72,4 +73,20 @@ eg:
     <!--p名称空间注入对象类型的属性, employee2-->
     <bean id="employeep" class="com.springDemo3.Employee" p:name="校长" p:car2-ref="car2">
     </bean>
+```
+
+#### spel的属性注入: (spring3.0之后的版本可以使用)
+参考spel语法
+
+#### 注入集合类型的属性
+[配置文件: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext2.xml)
+
+### spring分模块开发
+1. 在加载配置文件的时候, 加载多个.
+```
+ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml","applicationContext1.xml");
+```
+2. 在一个配置文件中, 引入多个配置文件
+```
+<import resource="applicationContext1.xml"></import>
 ```

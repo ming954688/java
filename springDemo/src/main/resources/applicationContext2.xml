@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--spring 注入集合类型的属性-->
+    <bean id="collectionBean" class="com.springDemo4.CollectionBean">
+
+        <!--数组类型和list一样-->
+        <property name="arrs">
+            <list>
+                <value>aa</value>
+                <value>bb</value>
+                <value>cc</value>
+            </list>
+        </property>
+
+        <property name="list">
+            <list>
+                <value>11</value>
+                <value>22</value>
+                <value>33</value>
+            </list>
+        </property>
+
+        <property name="set">
+            <set>
+                <value>嚣张</value>
+                <value>小李</value>
+                <value>小王</value>
+            </set>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="aaa" value-ref="car2"></entry>
+                <entry key="bbb" value="222"></entry>
+                <entry key="ccc" value="333"></entry>
+            </map>
+        </property>
+    </bean>
+</beans>
