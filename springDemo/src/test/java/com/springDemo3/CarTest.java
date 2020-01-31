@@ -24,4 +24,14 @@ public class CarTest {
         Car2 car2 = (Car2)classPathXmlApplicationContext.getBean("car2");
         System.out.println(car2.toString());
     }
+
+    /**
+     * p名称空间方式注入 car2
+     */
+    @Test
+    public void test2(){
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Car2 car2 = (Car2)classPathXmlApplicationContext.getBean("car2p");
+        System.out.println(car2.toString());
+    }
 }

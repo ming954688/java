@@ -26,4 +26,15 @@ public class EmployeeTest {
         System.out.println(employee2.toString());
     }
 
+    /**
+     * 使用p名称空间注入对象类型的属性
+     *
+     */
+    @Test
+    public void test3(){
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Employee employee = (Employee) classPathXmlApplicationContext.getBean("employeep");
+        System.out.println(employee.toString());
+    }
+
 }

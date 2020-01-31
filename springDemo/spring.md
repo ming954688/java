@@ -28,7 +28,7 @@ javaee 开发的一站式框架
         2. FileSystemXmlApplicationContext: 加载文件系统下的配置文件
 
 ## spring的配置项
-1. Bean标签的相关配置
+### 1. Bean标签的相关配置
 ```
  <bean id="userService" name="" class="com.springDemo1.UserServiceImpl">
  </bean>
@@ -50,8 +50,26 @@ javaee 开发的一站式框架
  5. globalsession: 应用在web项目中, 必须在porlet环境下使用(单点登录系统) 如果没有这种环境, 相当于是session
 ```
 
-2. spring的属性注入
+### 2. spring的属性注入
 > spring给bean中的属性设置值的方式有2种
 1. 构造方法方式
 2. set方法方式  
 详细见spring的配置文件
+
+#### p名称空间的属性注入(spring2.5之后的版本可以使用)
+写法:  
+普通属性:   p:属性名 = "   "  
+对象类型的属性: p: 属性名-ref= "  "  
+eg:
+```
+首先复制一行: 
+ xmlns:p="http://www.springframework.org/schema/p"
+
+<!--car2 p名称空间的方式注入-->
+    <bean id="car2p" class="com.springDemo3.Car2" p:name="奇瑞" p:price="5000">
+    </bean>
+    
+    <!--p名称空间注入对象类型的属性, employee2-->
+    <bean id="employeep" class="com.springDemo3.Employee" p:name="校长" p:car2-ref="car2">
+    </bean>
+```
