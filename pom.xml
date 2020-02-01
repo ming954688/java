@@ -15,7 +15,6 @@
         <module>jspDemo</module>
         <module>listenerAndFilter</module>
         <module>databases</module>
-        <module>DecoratorDemo</module>
         <module>springDemo</module>
     </modules>
 
