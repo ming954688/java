@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+
+    <!--扫描的作用是扫描类上的注解, 现在类上没有注解, 可以不使用扫描. 但是需要配置如下-->
+    <!--作用: 在没有扫描的情况下, 识别属性上的注解
+        1. @Resource
+        2. @Autowired
+        3. Qulifier
+        4. @Value
+    -->
+    <context:annotation-config/>
+
+    <!--配置bean-->
+    <bean id="orderDao" class="com.springIocXmlAndAnnocation.OrderDao"></bean>
+    <bean id="productDao" class="com.springIocXmlAndAnnocation.ProductDao"></bean>
+    <bean id="productService" class="com.springIocXmlAndAnnocation.ProductService"></bean>
+</beans>

@@ -152,4 +152,16 @@ ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXml
     * 开发方便
 
 ### xml和注解整合开发:
-> xml管理bean, 注解完成属性注入
+> xml管理bean, 注解完成属性注入  
+[实例: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springIocXmlAndAnnocation\ProductService.java)
+
+
+
+
+## springAop
+> AOP: 面向切面编程 , 是OOP的扩展和延伸, 解决OOP开发中遇到的问题
+spring底层的aop实现原理:
+* 动态代理:
+    1. JDK动态代理: 只能对实现了接口的类产生代理  
+    [实例: ](file:///G:\cache\idea\java\desingMode\src\main\java\com\dymicProxy\jdkProxy\UserDaoProxy.java)
+    2. Cglib动态代理: 第三方代理技术, 对没有实现接口的类产生代理对象. 生成子类对象. 动态的添加类的属性和方法
