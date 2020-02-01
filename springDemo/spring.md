@@ -166,3 +166,38 @@ spring底层的aop实现原理:
     [实例: ](file:///G:\cache\idea\java\desingMode\src\main\java\com\dymicProxy\jdkProxy\UserDaoProxy.java)
     2. Cglib动态代理: 第三方代理技术, 对没有实现接口的类产生代理对象. 生成子类对象. 动态的添加类的属性和方法
     [Cglib实例:](file:///G:\cache\idea\java\desingMode\src\main\java\com\dymicProxy\cglibProxy\CglibProxy.java)
+
+### spring的aop开发 (AspectJ的xml配置方式)
+spring中有两套aop的开发方式
+* spring传统模式(弃用)
+* spring基于AspectJ的aop开发(使用)
+
+#### aop开发中的相关术语
+1. joinpoint: 连接点, 可以被拦截的点, 可以被增强的方法
+2. pointcut: 切入点, 真正被拦截的点. 真正被增强的方法
+3. advice: 通知/增强 对方法增强的部分 (方法层面的增强)
+4. introduction: 引介 . (类层面的增强)
+5. target: 目标  被增强的对象. 即为切入点所在的类.
+6. Weaving: 织入 ---> 将通知(advice)  应用到目标(target) 的过程
+7. Proxy: 代理对象
+8. Aspect: 切面, 多个通知和多个切入点的组合
+
+
+> 1. 需要额外引入两个jar包, aop联盟.jar, aspectjweaver.jar
+> 2. 编写切面类, 交给spring管理, 里面封装增强的方法  
+    [eg: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springAop\MyAspectXML.java)
+> 3. 配置aop生成代理对象  
+    [eg: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_aop.xml)
+
+
+
+
+## spring整合单元测试
+```
+在测试类上加上如下注解即可
+
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:applicationContext_aop.xml")
+```
+
