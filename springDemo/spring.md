@@ -90,3 +90,66 @@ ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXml
 ```
 <import resource="applicationContext1.xml"></import>
 ```
+
+## springIoc的注解开发
+1. 引入context约束文件
+2. 在spring的配置文件中配置扫描
+3. 在相关的类中添加注解  
+[实例: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springIocAnnocation\UserDaoImpl.java)
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+<!--spring的IOC的注解入门-->
+<!--使用IOC的注解开发 , 配置扫描-->
+    <context:component-scan base-package="com.springIocAnnocation">
+    </context:component-scan>
+</beans>
+```
+
+### 注解方式设置属性的值
+注解方式设置属性的值, 可以没有set方法  
+属性如果有set方法, 将属性注入的注解添加到set方法上.  
+属性如果没有set方法, 将属性注入的注解添加到属性上即可.
+
+### spring的ioc的注解详解
+#### 1. Component:(组件)
+> 修饰一个类, 将这个类交给spring管理  
+> 这个注解有三个衍生注解(功能类似)
+
+* Controller: web层
+* Service: 业务层
+* Repository: Dao层
+
+#### 2. 属性注入的注解
+* 普通属性的注解:
+    * @value: 设置普通属性的值
+* 对象类型属性的注解:  
+@Autowired: 设置对象类型属性的值, 但是是按照类型完成属性注入  
+    我们习惯使用名称(id) 进行属性的注入, 所以使用另一个注解结合使用@Qualifier  
+    [Qualifier:](file:///G:\cache\idea\java\springDemo\src\main\java\com\springIocAnnocation\UserServiceImpl.java)
+
+    可以使用 @Resource注解代替上面的两个注解  
+    完成对象类型的属性的注入, 按照名称完成属性的注入
+
+#### Bean的其他注解
+* 配置生命周期  
+[例子: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springIocAnnocation\otherAnnocation\CustomerService.java)
+
+* Bean的作用范围的注解
+@Scope: 作用范围, 用法同xml配置方式  
+[例子: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springIocAnnocation\otherAnnocation\CustomerService.java)
+
+## springIoc的注解方式和xml方式比较
+适用场景:
+* xml: 可以适用任何场景
+    * 结构清晰, 维护方便
+
+* 注解: 有些地方不可以适用, 比如这个类不是自己提供的.
+    * 开发方便
+
+### xml和注解整合开发:
+> xml管理bean, 注解完成属性注入
