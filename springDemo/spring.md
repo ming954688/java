@@ -165,3 +165,4 @@ spring底层的aop实现原理:
     1. JDK动态代理: 只能对实现了接口的类产生代理  
     [实例: ](file:///G:\cache\idea\java\desingMode\src\main\java\com\dymicProxy\jdkProxy\UserDaoProxy.java)
     2. Cglib动态代理: 第三方代理技术, 对没有实现接口的类产生代理对象. 生成子类对象. 动态的添加类的属性和方法
+    [Cglib实例:](file:///G:\cache\idea\java\desingMode\src\main\java\com\dymicProxy\cglibProxy\CglibProxy.java)
