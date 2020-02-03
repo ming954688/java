@@ -16,10 +16,18 @@
     <aop:config>
         <!--expression 表达式配置哪些类的哪些方法需要进行增强-->
         <aop:pointcut id="pointcut" expression="execution(* com.springAop.ProductDaoImpl.save(..))"/>
+        <aop:pointcut id="pointcut1" expression="execution(* com.springAop.ProductDaoImpl.find(..))"/>
+        <aop:pointcut id="pointcut2" expression="execution(* com.springAop.ProductDaoImpl.update(..))"/>
+        <aop:pointcut id="pointcut3" expression="execution(* com.springAop.ProductDaoImpl.delete(..))"/>
+
 
         <!--配置切面-->
         <aop:aspect ref="myAspectXML">
-            <aop:before method="checkPri" pointcut-ref="pointcut"/>
+            <aop:before method="beforeTest" pointcut-ref="pointcut"/>
+            <aop:after-returning method="afterTest" pointcut-ref="pointcut1" returning="result"/>
+            <aop:around method="aroundTest" pointcut-ref="pointcut2"/>
+            <aop:after-throwing method="throwsTest" pointcut-ref="pointcut3" throwing="ex"/>
+            <aop:after method="finallyTest" pointcut-ref="pointcut3"/>
         </aop:aspect>
     </aop:config>
 

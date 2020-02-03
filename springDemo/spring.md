@@ -189,6 +189,30 @@ spring中有两套aop的开发方式
 > 3. 配置aop生成代理对象  
     [eg: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_aop.xml)
 
+#### spring中的通知类型:
+1. 前置通知: 在目标方法执行之前进行操作 ---> 获取切入点的信息
+```
+<aop:before method="checkPri" pointcut-ref="pointcut"/>
+```
+2. 后置通知: 在目标方法执行之后进行操作 ---> 获取方法的返回值
+```
+配置文件中的returning写的参数名 需要和 增强方法中的参数名一致
+ <aop:after-returning method="afterTest" pointcut-ref="pointcut1" returning="result"/>
+```
+3. 环绕通知: 在目标方法执行之前后之后进行操作 ----> 可以阻止目标方法的执行
+```
+切面类中增强的方法需要添加参数, 并且有返回值.
+<aop:around method="aroundTest" pointcut-ref="pointcut2"/>
+```
+4. 异常抛出通知: 在程序出现异常的时候, 进行的操作
+```
+throwing写的参数名 需要和 切面类中的Throwable参数的 参数名一致
+<aop:after-throwing method="throwsTest" pointcut-ref="pointcut3" throwing="ex"/>
+```
+5. 最终通知: 无论代码是否有异常, 总是会执行.
+6. 引介通知(不需要管)
+
+
 
 
 

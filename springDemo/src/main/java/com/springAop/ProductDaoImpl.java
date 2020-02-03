@@ -7,8 +7,9 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void find() {
+    public String find() {
         System.out.println("查询...");
+        return "返回值测试";
     }
 
     @Override
@@ -19,5 +20,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public void delete() {
         System.out.println("删除...");
+        int i = 1/0;
+
     }
 }

@@ -2,7 +2,7 @@ package com.springAop;
 
 public interface ProductDao {
     void save();
-    void find();
+    String find();
     void update();
     void delete();
 }
