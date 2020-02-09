@@ -216,6 +216,29 @@ throwing写的参数名 需要和 切面类中的Throwable参数的 参数名一
 > 基于execution的函数完成的.  
 > 语法: [访问修饰符] 方法的返回值 包名.类名.方法名(参数)
 
+#### spring的AOP的基于AspectJ的注解开发
+1. 引入jar包
+2. 引入配置文件
+3. 将目标类, 切面类交给spring管理
+4. 使用注解对目标类进行增强
+    * 在配置文件中打开aop注解配置
+    * 在切面类上使用注解  
+[实例: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springAop\annocationAop\MyAspectAnno.java)
+
+> aop的相关注解:
+```
+@Aspect : 定义切面类的注解
+
+通知类型: 
+@Before: 前置通知
+@AfterReturing: 后置通知
+@AfterThrowing: 异常抛出通知
+@Around: 环绕通知
+@After: 最终通知
+
+定义切入点: 
+@PointCut
+```
 
 ## spring整合单元测试
 ```
