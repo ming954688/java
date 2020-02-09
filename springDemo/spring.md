@@ -244,8 +244,12 @@ throwing写的参数名 需要和 切面类中的Throwable参数的 参数名一
 ```
 在测试类上加上如下注解即可
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext_aop.xml")
 ```
 
+## springjdbc模板的使用, 整合c3po连接池
+[实例: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springJdbc\User.java)  
+[配置文件: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_C3P0.xml)
+
+## spring中的事务管理
