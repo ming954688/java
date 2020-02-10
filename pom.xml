@@ -17,6 +17,7 @@
         <module>databases</module>
         <module>springDemo</module>
         <module>desingMode</module>
+        <module>MybatisDemo</module>
     </modules>
 
     <dependencies>
