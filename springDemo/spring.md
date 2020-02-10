@@ -253,3 +253,37 @@ throwing写的参数名 需要和 切面类中的Throwable参数的 参数名一
 [配置文件: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_C3P0.xml)
 
 ## spring中的事务管理
+
+
+### spring中的传播行为
+> 用途: 用于解决复杂的业务层方法相互调用的问题  
+> 7种, 三类
+1. 保证多个操作在同一个事务中
+    * PROPAGATION_REQUIRED ****** 默认值: 如果A中有事务, 就直接使用A中的事务,如果本身没有事务, 会自动创建一个新的事务, 将所有的操作包含在一起
+    * PROPAGATION_SUPPORTS: 支持事务, 如果A中有事务, 使用A中的事务. 如果没有事务, 就不使用事务
+    * PROPAGATION_MANDATORY: 如果A中有事务, 使用A中的事务, 如果没有事务, 直接抛出异常.
+2. 保证多个操作不在同一个事务中
+    * PROPAGATION_REQUIRED_NEW:  ****** 如果A中有事务, 挂起A中的事务. 之后创建新的事务, 只包含自身的操作. 如果A中没有事务, 也会创建一个新的事务, 包含自己自身的操作
+    * PROPAGATION_NOT_SUPPORTED: 如果A中有事务, 挂起A中的事务. 不使用事务
+    * PROPAGATION_NEVER: 如果A中有事务, 直接抛出异常
+3. 嵌套式事务
+    * PROPAGATION_NESTED ******: 嵌套事务, 如果A中有事务, 按照A的事务执行, 执行完成后. 设置一个保存点, 执行B中的操作. 如果没有异常,执行通过, 如果有异常, 可以选择回滚到最初的位置, 也可以回滚到保存点  
+[图片笔记: ](file:///G:\cache\idea\java\springDemo\Snipaste_2020-02-10_02-21-23.png)
+
+### spring管理事务的方式
+1. 编程式事务
+    1. 配置平台事务管理器
+    2. 配置事务管理的模板
+    3. 在需要用到事务的地方(业务层) 注入事务管理的模板  
+[实例: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springTx\AccountServiceImpl.java)
+2. 声明式事务(通过配置实现, 底层AOP)
+    * XML式的事务管理
+        1. 配置文件中配置平台事务管理器
+        2. 配置事务的增强(相当于是aop中的切面类)
+        3. 配置aop, 将事务的增强应用到被增强的方法中  
+        [实例: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_txwithXML.xml)
+    * 注解式的事务管理
+        1. 配置文件中配置平台事务管理器
+        2. 开启注解事务
+        3. 在业务层上添加事务注解  
+        [实例: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_txwithAnno.xml)
