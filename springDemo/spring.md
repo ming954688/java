@@ -1,34 +1,50 @@
 # spring
+
 ## 什么是spring
+
 javaee 开发的一站式框架
 > 有ee开发的每一层解决方案  
     * web层： springmvc  
     * service层: spring的bean管理, spring声明式事务  
     * dao层: spring的jdbc模板,  spirng的orm模块
 
-## spring的ioc入门
-### 什么是ioc
+# spring的ioc入门
+
+## 什么是ioc
+
 > 控制反转:
     将对象创建的权利交给spring
-#### springioc底层实现
+    
+    
+## springioc底层实现
+
 工厂 + 反射 + 配置文件
 
 * 将实现类交给spring管理  
-[bean配置](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext.xml)
 
-### DI(依赖注入)
+  [bean配置]:src/main/resources/applicationContext.xml
+
+  
+
+
+
+## DI(依赖注入)
+
 > 前提: 有IOC的环境, spring 在管理这个类的时候,会将依赖的属性注入进来  
 [依赖注入; ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springDemo1\UserDaoImpl.java)
 
 ## spring的工厂类:
+
 * BeanFactory: 老版本的工厂类 调用getBean()方法的时候, 生成类的实例
 * ApplicationContext: 新版本的工厂类  (继承了BeanFactory) 在加载配置文件的时候将spring管理的类实例化  
 有两个实现类:  
         1. ClassPathApplicationContext : 加载类路径下的配置文件  
-        2. FileSystemXmlApplicationContext: 加载文件系统下的配置文件
+              2. FileSystemXmlApplicationContext: 加载文件系统下的配置文件
 
-## spring的配置项
+## spring的配置项 IOC
+
 ### 1. Bean标签的相关配置
+
 ```
  <bean id="userService" name="" class="com.springDemo1.UserServiceImpl">
  </bean>
@@ -51,13 +67,14 @@ javaee 开发的一站式框架
 ```
 
 ### 2. spring的属性注入
+
 > spring给bean中的属性设置值的方式有2种
 1. 构造方法方式
 2. set方法方式  
 [配置文件](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext1.xml)
 
+#### 1. p名称空间的属性注入(spring2.5之后的版本可以使用)
 
-#### p名称空间的属性注入(spring2.5之后的版本可以使用)
 写法:  
 普通属性:   p:属性名 = "   "  
 对象类型的属性: p: 属性名-ref= "  "  
@@ -75,23 +92,16 @@ eg:
     </bean>
 ```
 
-#### spel的属性注入: (spring3.0之后的版本可以使用)
+#### 2. spel的属性注入: (spring3.0之后的版本可以使用)
+
 参考spel语法
 
-#### 注入集合类型的属性
+#### 3. 注入集合类型的属性
+
 [配置文件: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext2.xml)
 
-### spring分模块开发
-1. 在加载配置文件的时候, 加载多个.
-```
-ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml","applicationContext1.xml");
-```
-2. 在一个配置文件中, 引入多个配置文件
-```
-<import resource="applicationContext1.xml"></import>
-```
-
 ## springIoc的注解开发
+
 1. 引入context约束文件
 2. 在spring的配置文件中配置扫描
 3. 在相关的类中添加注解  
@@ -125,7 +135,9 @@ ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXml
 * Repository: Dao层
 
 #### 2. 属性注入的注解
+
 * 普通属性的注解:
+  
     * @value: 设置普通属性的值
 * 对象类型属性的注解:  
 @Autowired: 设置对象类型属性的值, 但是是按照类型完成属性注入  
@@ -135,7 +147,8 @@ ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXml
     可以使用 @Resource注解代替上面的两个注解  
     完成对象类型的属性的注入, 按照名称完成属性的注入
 
-#### Bean的其他注解
+#### 3. Bean的其他注解
+
 * 配置生命周期  
 [例子: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springIocAnnocation\otherAnnocation\CustomerService.java)
 
@@ -157,8 +170,8 @@ ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXml
 
 
 
+# springAop
 
-## springAop
 > AOP: 面向切面编程 , 是OOP的扩展和延伸, 解决OOP开发中遇到的问题
 spring底层的aop实现原理:
 * 动态代理:
@@ -167,12 +180,14 @@ spring底层的aop实现原理:
     2. Cglib动态代理: 第三方代理技术, 对没有实现接口的类产生代理对象. 生成子类对象. 动态的添加类的属性和方法
     [Cglib实例:](file:///G:\cache\idea\java\desingMode\src\main\java\com\dymicProxy\cglibProxy\CglibProxy.java)
 
-### spring的aop开发 (AspectJ的xml配置方式)
+## spring的aop开发 (AspectJ的xml配置方式)
+
 spring中有两套aop的开发方式
 * spring传统模式(弃用)
 * spring基于AspectJ的aop开发(使用)
 
-#### aop开发中的相关术语
+## aop开发中的相关术语
+
 1. joinpoint: 连接点, 可以被拦截的点, 可以被增强的方法
 2. pointcut: 切入点, 真正被拦截的点. 真正被增强的方法
 3. advice: 通知/增强 对方法增强的部分 (方法层面的增强)
@@ -185,11 +200,12 @@ spring中有两套aop的开发方式
 
 > 1. 需要额外引入两个jar包, aop联盟.jar, aspectjweaver.jar
 > 2. 编写切面类, 交给spring管理, 里面封装增强的方法  
-    [eg: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springAop\MyAspectXML.java)
+      [eg: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springAop\MyAspectXML.java)
 > 3. 配置aop生成代理对象  
-    [eg: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_aop.xml)
+      [eg: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_aop.xml)
 
-#### spring中的通知类型:
+### spring中的通知类型:
+
 1. 前置通知: 在目标方法执行之前进行操作 ---> 获取切入点的信息
 ```
 <aop:before method="checkPri" pointcut-ref="pointcut"/>
@@ -212,11 +228,13 @@ throwing写的参数名 需要和 切面类中的Throwable参数的 参数名一
 5. 最终通知: 无论代码是否有异常, 总是会执行.
 6. 引介通知(不需要管)
 
-#### spring 切入点表达式的写法
+### spring 切入点表达式的写法
+
 > 基于execution的函数完成的.  
 > 语法: [访问修饰符] 方法的返回值 包名.类名.方法名(参数)
 
-#### spring的AOP的基于AspectJ的注解开发
+### spring的AOP的基于AspectJ的注解开发
+
 1. 引入jar包
 2. 引入配置文件
 3. 将目标类, 切面类交给spring管理
@@ -240,22 +258,23 @@ throwing写的参数名 需要和 切面类中的Throwable参数的 参数名一
 @PointCut
 ```
 
-## spring整合单元测试
-```
-在测试类上加上如下注解即可
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext_aop.xml")
-```
+
+# spring中的事务管理
+
+
 
 ## springjdbc模板的使用, 整合c3po连接池
+
 [实例: ](file:///G:\cache\idea\java\springDemo\src\main\java\com\springJdbc\User.java)  
 [配置文件: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_C3P0.xml)
 
-## spring中的事务管理
 
 
-### spring中的传播行为
+
+
+## spring中的传播行为
+
 > 用途: 用于解决复杂的业务层方法相互调用的问题  
 > 7种, 三类
 1. 保证多个操作在同一个事务中
@@ -268,9 +287,14 @@ throwing写的参数名 需要和 切面类中的Throwable参数的 参数名一
     * PROPAGATION_NEVER: 如果A中有事务, 直接抛出异常
 3. 嵌套式事务
     * PROPAGATION_NESTED ******: 嵌套事务, 如果A中有事务, 按照A的事务执行, 执行完成后. 设置一个保存点, 执行B中的操作. 如果没有异常,执行通过, 如果有异常, 可以选择回滚到最初的位置, 也可以回滚到保存点  
-[图片笔记: ](file:///G:\cache\idea\java\springDemo\Snipaste_2020-02-10_02-21-23.png)
+  <img src="./Snipaste_2020-02-10_02-21-23.png">
 
-### spring管理事务的方式
+
+
+​				
+
+## spring管理事务的方式
+
 1. 编程式事务
     1. 配置平台事务管理器
     2. 配置事务管理的模板
@@ -287,3 +311,40 @@ throwing写的参数名 需要和 切面类中的Throwable参数的 参数名一
         2. 开启注解事务
         3. 在业务层上添加事务注解  
         [实例: ](file:///G:\cache\idea\java\springDemo\src\main\resources\applicationContext_txwithAnno.xml)
+
+
+
+
+
+
+
+
+
+# spring分模块开发
+
+1. 在加载配置文件的时候, 加载多个.
+
+```
+ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml","applicationContext1.xml");
+```
+
+2. 在一个配置文件中, 引入多个配置文件
+
+```
+<import resource="applicationContext1.xml"></import>
+```
+
+
+
+
+
+# spring整合单元测试
+
+```
+在测试类上加上如下注解即可
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:applicationContext_aop.xml")
+```
+
+##
