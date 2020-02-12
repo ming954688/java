@@ -38,7 +38,7 @@
     <!--mapper动态代理开发 扫描版-->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--指定基本包-->
-        <property name="basePackage" value="com.mybatisDemo.springWithMybatis.mapper"></property>
+        <property name="basePackage" value="com.mapper"></property>
     </bean>
 
 </beans>
