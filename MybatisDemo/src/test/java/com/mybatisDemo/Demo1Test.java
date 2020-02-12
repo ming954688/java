@@ -134,6 +134,8 @@ public class Demo1Test {
         sqlSession.commit();
     }
 
+
+
     @After
     public void afterTest() {
         sqlSession.close();

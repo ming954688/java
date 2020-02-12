@@ -5,9 +5,17 @@
 
 <!--写sql语句的 -->
 <mapper namespace="com.mybatisDemo.mapper.UserMapper"><!--namespace 命名空间-->
+
+    <!--提取公共的sql片段-->
+    <sql id="selectedTest">
+        select * from user
+    </sql>
+
+
     <!--通过id查询一个用户-->
     <select id="selectById" parameterType="Integer" resultType="User">
-        select * from user where id = #{value }
+        <include refid="selectedTest"/>
+        where id = #{value }
     </select>
 
     <!--通过名字模糊查询-->
@@ -41,4 +49,85 @@
         delete from user where id = #{id}
 
     </delete>
+
+
+    <!--===============================================================================================================-->
+    <!--包装pojo查询 根据用户名查询-->
+    <select id="selectByQueryVo" parameterType="QueryVo" resultType="com.mybatisDemo.pojo.User">
+        select * from user where username like "%"#{user.username}"%"
+    </select>
+
+    <!--返回简单类型-->
+    <select id="selectUserNumbers" resultType="Integer">
+        select count(*) from user;
+    </select>
+
+    <!--根据性别和姓名查询用户-->
+    <select id="selectBySexAndName" parameterType="User" resultType="User">
+        <include refid="selectedTest"/>
+        <where>
+
+            <if test="sex != null and sex != '' ">
+                sex = #{sex}
+            </if>
+
+            <if test="username != null and username != '' ">
+                and username = #{username }
+            </if>
+        </where>
+
+    </select>
+
+
+    <!--多个id查询-->
+    <select id="selectUserByIdsWithVo" parameterType="QueryVo" resultType="User">
+        <include refid="selectedTest"/>
+        <where>
+            id in
+            <foreach collection="idsList" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="selectUserByArrayIds" parameterType="Integer" resultType="User">
+        <include refid="selectedTest"/>
+        <where>
+            id in
+            <foreach collection="array" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="selectUserByListIds" parameterType="Integer" resultType="User">
+        <include refid="selectedTest"/>
+        <where>
+            id in
+            <foreach collection="list" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+
+    <!--一对多 关联查询-->
+    <resultMap id="userWithOrders" type="User">
+        <id column="uId" property="id"/>
+        <result column="username" property="username"/>
+        <!--一对多映射 -->
+        <collection property="ordersList" ofType="Orders">
+            <id column="id" property="id"/>
+            <result column="uId" property="userId"/>
+            <result column="number" property="number"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectUserWithOrdersList" parameterType="Integer" resultMap="userWithOrders">
+        select u.id as uId,u.username,o.number,o.id from user u
+        left join orders o
+        on u.id = o.user_id
+        where u.id = #{id}
+    </select>
+
 </mapper>

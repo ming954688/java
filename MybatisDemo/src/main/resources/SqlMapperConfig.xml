@@ -26,6 +26,6 @@
     <!--mapper文件的位置-->
     <mappers>
         <mapper resource="sqlMapper/User.xml"/>
-
+        <mapper resource="sqlMapper/Order.xml"/>
     </mappers>
 </configuration>

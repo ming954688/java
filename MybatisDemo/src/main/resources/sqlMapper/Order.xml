@@ -4,9 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--写sql语句的 -->
-<mapper namespace="Order">
-<!--通过id查询一个用户-->
-    <select id="selectById" parameterType="Integer" resultType="com.mybatisDemo.pojo.User">
-        select * from user where id = #{value }
+<mapper namespace="com.mybatisDemo.mapper.OrdersMapper">
+    <resultMap id="aa" type="Orders">
+        <result column="user_id" property="userId"/>
+    </resultMap>
+<!--查询所有的订单-->
+    <select id="selectAllOrders" resultMap="aa">
+        select * from orders;
+    </select>
+
+
+    <!--一对一关联查询-->
+
+    <resultMap id="order" type="Orders">
+        <id column="id" property="id"></id>
+        <result column="uId" property="userId"/>
+        <!--一对一-->
+        <association property="user" javaType="User">
+            <id column="uId" property="id"/>
+            <result column="username" property="username"/>
+        </association>
+    </resultMap>
+
+
+    <select id="selectOrders" resultMap="order">
+        select o.id,o.user_id as uId,o.number,o.createtime,u.username
+        from orders o left join user u on
+        o.user_id = u.id
     </select>
 </mapper>

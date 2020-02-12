@@ -1,4 +1,4 @@
-package com.mybatisDemo.pojo;
+package com.mybatisDemo.springWithMybatis.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
