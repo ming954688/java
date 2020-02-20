@@ -10,6 +10,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>springDemo</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>6</source>
+                    <target>6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
@@ -45,7 +58,6 @@
             <version>0.9.5.2</version>
             <scope>compile</scope>
         </dependency>
-
 
     </dependencies>
 

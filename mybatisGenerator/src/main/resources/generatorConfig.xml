@@ -50,6 +50,8 @@
 
         <table schema="" tableName="orders"></table>
         <table schema="" tableName="user"></table>
+        <table schema="" tableName="items"></table>
+
 
         <!--有些表的字段需要指定java类型-->
         <!--<table schema="" tableName="">

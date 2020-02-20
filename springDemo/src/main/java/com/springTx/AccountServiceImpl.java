@@ -30,7 +30,7 @@ public class AccountServiceImpl implements AccountService {
     private TransactionTemplate transactionTemplate;
 
     @Override
-    public void transfer(String from, String to, Double money) {
+    public void transfer(final String from, final String to, final Double money) {
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
