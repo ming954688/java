@@ -19,6 +19,8 @@
         <module>desingMode</module>
         <module>MybatisDemo</module>
         <module>mybatisGenerator</module>
+        <module>springmvcDemo</module>
+        <module>basicUp</module>
     </modules>
 
     <dependencies>
